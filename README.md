@@ -10,12 +10,6 @@ A responsive, multi-page static website built as a portfolio project. Designed f
 
 ---
 
-## 📸 Preview
-
-![AgroTrade Preview](https://placehold.co/1200x600?text=AgroTrade+Căușeni+Preview)
-
----
-
 ## 📄 Pages
 
 | Page | File | Description |
