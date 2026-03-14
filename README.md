@@ -60,33 +60,6 @@ agrotrade-causeni/
 
 ---
 
-## 🚀 Getting Started
-
-No build step required. Just open any `.html` file in your browser:
-
-```bash
-git clone https://github.com/yourusername/agrotrade-causeni.git
-cd agrotrade-causeni
-open index.html
-```
-
-Or use a local dev server for best results:
-
-```bash
-npx serve .
-```
-
----
-
-## 📝 Notes
-
-- All contact details (phone, email, address) are fictional placeholders
-- Replace `yourdomain.com` in all files and in `sitemap.xml` when deploying
-- Add a real `favicon.ico` (generate one at [favicon.io](https://favicon.io))
-- Replace the `og:image` placeholder URL with a real image before going live
-
----
-
 ## 📚 What I Learned
 
 - Structuring a multi-page static site without a framework
