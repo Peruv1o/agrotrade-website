@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgroTrade Căușeni — Partenerul Tău de Încredere</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Fira+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --deep: #0D1B0F;
+    --forest: #1A3A1E;
+    --leaf: #2E6B35;
+    --cream: #F5F0E8;
+    --warm: #EDE5D0;
+    --text: #1C1C1C;
+    --muted: #6B6B6B;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Fira Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 5vw;
+    background: rgba(13,27,15,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.25);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+  }
+  .nav-logo span { color: #fff; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.25s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--deep) !important;
+    padding: 0.5rem 1.4rem;
+    border-radius: 2px;
+    font-weight: 600 !important;
+    transition: background 0.25s !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--deep) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--deep);
+    position: relative;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(46,107,53,0.35) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 80% at 10% 80%, rgba(201,168,76,0.12) 0%, transparent 60%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 720px;
+    padding: 0 5vw;
+    animation: fadeUp 1s ease both;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.35);
+    color: var(--gold);
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 2px;
+    margin-bottom: 2rem;
+    animation: fadeUp 1s 0.1s ease both;
+  }
+  .hero-badge::before { content: '⬡'; font-size: 0.9rem; }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+    display: block;
+  }
+  .hero p {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.75;
+    max-width: 540px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 1s 0.4s ease both;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--deep);
+    padding: 0.9rem 2.2rem;
+    border: none; border-radius: 2px;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer; text-decoration: none;
+    display: inline-block;
+    transition: background 0.25s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    padding: 0.9rem 2.2rem;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 2px;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer; text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.25s, color 0.25s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-stats {
+    position: absolute; bottom: 3rem; right: 5vw;
+    display: flex; gap: 3rem;
+    animation: fadeUp 1s 0.6s ease both;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem; font-weight: 900;
+    color: var(--gold); display: block;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-top: 0.3rem;
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    background: var(--gold);
+    padding: 0.7rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-track {
+    display: inline-flex; gap: 0;
+    animation: marquee 25s linear infinite;
+  }
+  .marquee-item {
+    font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--deep);
+    padding: 0 2.5rem;
+  }
+  .marquee-item::after { content: '✦'; margin-left: 2.5rem; color: rgba(13,27,15,0.35); }
+
+  /* ── SECTION BASE ── */
+  section { padding: 7rem 5vw; }
+  .section-label {
+    display: inline-block;
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--leaf);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.15;
+    color: var(--deep);
+    margin-bottom: 1.5rem;
+  }
+  .section-sub {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 580px;
+    font-weight: 300;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    background: var(--warm);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
+    align-items: center;
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-card {
+    background: var(--deep);
+    border-radius: 4px;
+    padding: 3rem;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--leaf));
+  }
+  .about-card-icon { font-size: 3rem; margin-bottom: 1.5rem; display: block; }
+  .about-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--gold); margin-bottom: 0.75rem;
+  }
+  .about-card p { color: rgba(255,255,255,0.65); line-height: 1.7; font-weight: 300; }
+  .about-accent {
+    position: absolute;
+    bottom: -1.5rem; right: -1.5rem;
+    width: 120px; height: 120px;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 50%;
+  }
+
+  /* ── PRODUCTS ── */
+  .products { background: var(--cream); }
+  .products-header { margin-bottom: 4rem; }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .product-card {
+    background: #fff;
+    border: 1px solid rgba(13,27,15,0.08);
+    border-radius: 4px;
+    padding: 2.2rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: default;
+  }
+  .product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(13,27,15,0.1);
+  }
+  .product-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--leaf));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.35s;
+  }
+  .product-card:hover::after { transform: scaleX(1); }
+  .product-icon { font-size: 2.5rem; margin-bottom: 1.2rem; display: block; }
+  .product-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700;
+    color: var(--deep); margin-bottom: 0.6rem;
+  }
+  .product-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; font-weight: 300; }
+  .product-tag {
+    display: inline-block; margin-top: 1.2rem;
+    background: rgba(46,107,53,0.08);
+    color: var(--leaf);
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.3rem 0.75rem; border-radius: 2px;
+  }
+
+  /* ── WHY US ── */
+  .why { background: var(--deep); }
+  .why .section-title { color: #fff; }
+  .why .section-label { color: var(--gold); }
+  .why .section-sub { color: rgba(255,255,255,0.5); }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem; margin-top: 4rem;
+  }
+  .why-item {
+    border-left: 2px solid rgba(201,168,76,0.25);
+    padding: 1.5rem 1.5rem 1.5rem 2rem;
+    transition: border-color 0.3s;
+  }
+  .why-item:hover { border-color: var(--gold); }
+  .why-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900;
+    color: rgba(201,168,76,0.3);
+    display: block; margin-bottom: 0.75rem;
+  }
+  .why-item h4 {
+    font-size: 1rem; font-weight: 600;
+    color: #fff; margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+  }
+  .why-item p { font-size: 0.87rem; color: rgba(255,255,255,0.45); line-height: 1.65; font-weight: 300; }
+
+  /* ── LOCATION ── */
+  .location {
+    background: var(--warm);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
+    align-items: center;
+  }
+  .location-info .section-sub { margin-bottom: 2rem; }
+  .contact-list { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; }
+  .contact-list li {
+    display: flex; align-items: flex-start; gap: 1rem;
+    font-size: 0.95rem; line-height: 1.5;
+  }
+  .contact-list .ci {
+    width: 38px; height: 38px;
+    background: var(--deep);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+    color: var(--gold);
+  }
+  .contact-list strong { display: block; font-weight: 600; color: var(--deep); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.15rem; }
+  .contact-list span { color: var(--muted); font-weight: 300; }
+  .map-placeholder {
+    background: var(--deep);
+    border-radius: 4px;
+    height: 360px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 1rem;
+    position: relative; overflow: hidden;
+    border: 1px solid rgba(201,168,76,0.15);
+  }
+  .map-placeholder::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 50% 50%, rgba(46,107,53,0.2) 0%, transparent 70%);
+  }
+  .map-pin { font-size: 3rem; position: relative; z-index: 1; animation: pulse 2s infinite; }
+  .map-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--gold); z-index: 1;
+  }
+  .map-sub { font-size: 0.8rem; color: rgba(255,255,255,0.4); z-index: 1; font-weight: 300; }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--forest);
+    text-align: center;
+    padding: 6rem 5vw;
+    position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 70% at 50% 50%, rgba(201,168,76,0.08) 0%, transparent 70%);
+  }
+  .cta-section .section-label { color: var(--gold); }
+  .cta-section .section-title { color: #fff; max-width: 600px; margin: 0 auto 1.5rem; }
+  .cta-section .section-sub { color: rgba(255,255,255,0.5); margin: 0 auto 3rem; text-align: center; }
+  .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep);
+    color: rgba(255,255,255,0.4);
+    padding: 3rem 5vw;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 2rem; flex-wrap: wrap;
+    border-top: 1px solid rgba(201,168,76,0.1);
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 900;
+    color: var(--gold);
+  }
+  footer p { font-size: 0.8rem; font-weight: 300; }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { color: rgba(255,255,255,0.35); text-decoration: none; font-size: 0.8rem; font-weight: 300; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @keyframes pulse {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50%       { transform: translateY(-8px) scale(1.05); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero h1 { font-size: 2.6rem; }
+    .hero-stats { position: static; margin-top: 3rem; justify-content: center; }
+    .about, .location { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-content { padding-top: 6rem; }
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s, transform 0.7s;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Agro<span>Trade</span></a>
+  <ul class="nav-links">
+    <li><a href="despre.html">Despre</a></li>
+    <li><a href="produse.html">Produse</a></li>
+    <li><a href="avantaje.html" class="active">Avantaje</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="tel:+37369000000" class="nav-cta">Sunați-ne</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <span class="hero-badge">Căușeni, Republica Moldova</span>
+    <h1>Comerț Local. <em>Calitate Reală.</em></h1>
+    <p>Furnizăm produse de calitate superioară direct pentru afaceri și gospodării din Căușeni și împrejurimi. Parteneriat de lungă durată, prețuri corecte.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Contactați-ne azi</a>
+      <a href="#produse" class="btn-outline">Vezi produsele</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">12+</span>
+      <span class="stat-label">Ani de activitate</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">500+</span>
+      <span class="stat-label">Clienți activi</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">100%</span>
+      <span class="stat-label">Livrare locală</span>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marquee">
+    <span class="marquee-item">Livrare Rapidă</span>
+    <span class="marquee-item">Prețuri Competitive</span>
+    <span class="marquee-item">Produse Locale</span>
+    <span class="marquee-item">Parteneriat de Încredere</span>
+    <span class="marquee-item">Căușeni & Împrejurimi</span>
+    <span class="marquee-item">Calitate Garantată</span>
+    <span class="marquee-item">Livrare Rapidă</span>
+    <span class="marquee-item">Prețuri Competitive</span>
+    <span class="marquee-item">Produse Locale</span>
+    <span class="marquee-item">Parteneriat de Încredere</span>
+    <span class="marquee-item">Căușeni & Împrejurimi</span>
+    <span class="marquee-item">Calitate Garantată</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="despre">
+  <div class="about-text reveal">
+    <span class="section-label">Cine suntem</span>
+    <h2 class="section-title">Rădăcini locale,<br>standarde înalte</h2>
+    <p class="section-sub">Activăm în Căușeni de peste un deceniu. Cunoaștem nevoile comunității noastre și ne adaptăm continuu pentru a oferi cele mai bune condiții comerciale, cu personal dedicat și logistică eficientă pe tot raionul.</p>
+    <br>
+    <p class="section-sub">Fie că ești antreprenor, fermier sau gospodar — suntem partenerul pe care te poți baza în fiecare zi.</p>
+  </div>
+  <div class="about-visual reveal">
+    <div class="about-card">
+      <span class="about-card-icon">🏪</span>
+      <h3>Afacere de familie</h3>
+      <p>Construim relații pe termen lung cu fiecare client. Pentru noi, comerțul înseamnă comunitate — nu doar tranzacție.</p>
+      <div class="about-accent"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="produse">
+  <div class="products-header reveal">
+    <span class="section-label">Oferta noastră</span>
+    <h2 class="section-title">Ce oferim</h2>
+    <p class="section-sub">Gama noastră de produse și servicii este gândită pentru nevoile reale ale comunității din Căușeni.</p>
+  </div>
+  <div class="products-grid">
+    <div class="product-card reveal">
+      <span class="product-icon">🌾</span>
+      <h3>Produse Agricole</h3>
+      <p>Cereale, furaje, semințe și inputuri agricole de calitate pentru fermierii din raion.</p>
+      <span class="product-tag">Sezonier</span>
+    </div>
+    <div class="product-card reveal">
+      <span class="product-icon">🛒</span>
+      <h3>Produse Alimentare</h3>
+      <p>Sortiment larg de produse alimentare pentru magazine, restaurante și gospodării.</p>
+      <span class="product-tag">Stoc permanent</span>
+    </div>
+    <div class="product-card reveal">
+      <span class="product-icon">🔧</span>
+      <h3>Materiale de Construcție</h3>
+      <p>Materiale și echipamente pentru construcție și reparații, livrare la șantier.</p>
+      <span class="product-tag">La comandă</span>
+    </div>
+    <div class="product-card reveal">
+      <span class="product-icon">🚚</span>
+      <h3>Livrare la Domiciliu</h3>
+      <p>Livrăm comenzile tale oriunde în Căușeni și localitățile din jur, rapid și sigur.</p>
+      <span class="product-tag">Gratuit la volum</span>
+    </div>
+    <div class="product-card reveal">
+      <span class="product-icon">📦</span>
+      <h3>Comerț en-Gros</h3>
+      <p>Prețuri speciale pentru magazine, firme și achizitori de volum. Contracte flexibile.</p>
+      <span class="product-tag">Parteneriat</span>
+    </div>
+    <div class="product-card reveal">
+      <span class="product-icon">💼</span>
+      <h3>Consultanță Comercială</h3>
+      <p>Te ajutăm să identifici cele mai bune surse și prețuri pentru afacerea ta locală.</p>
+      <span class="product-tag">Gratuit</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="avantaje">
+  <div class="reveal">
+    <span class="section-label">De ce noi</span>
+    <h2 class="section-title">Avantajele noastre</h2>
+    <p class="section-sub">Alegem să ne construim reputația pe fapte, nu pe promisiuni. Iată de ce clienții noștri revin.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-item reveal">
+      <span class="why-num">01</span>
+      <h4>Local & Accesibil</h4>
+      <p>Suntem în Căușeni, nu la telefon undeva departe. Putem fi găsiți fizic, oricând ai nevoie.</p>
+    </div>
+    <div class="why-item reveal">
+      <span class="why-num">02</span>
+      <h4>Prețuri Corecte</h4>
+      <p>Transparență totală fără comisioane ascunse. Prețul pe care îl auzi este prețul pe care îl plătești.</p>
+    </div>
+    <div class="why-item reveal">
+      <span class="why-num">03</span>
+      <h4>Livrare în Aceeași Zi</h4>
+      <p>Comenzile confirmate dimineața ajung la tine până seara — în Căușeni și localitățile din raion.</p>
+    </div>
+    <div class="why-item reveal">
+      <span class="why-num">04</span>
+      <h4>Relație pe Termen Lung</h4>
+      <p>Nu urmărim o singură vânzare. Dorim să fim partenerul tău ani de zile — și asta se simte în serviciu.</p>
+    </div>
+    <div class="why-item reveal">
+      <span class="why-num">05</span>
+      <h4>Plată Flexibilă</h4>
+      <p>Acceptăm numerar, card și transfer bancar. Pentru clienți fideli, oferim și termene de plată avantajoase.</p>
+    </div>
+    <div class="why-item reveal">
+      <span class="why-num">06</span>
+      <h4>Suport Personal</h4>
+      <p>Ai un singur contact de la noi — nu robotul de răspuns, ci omul care cunoaște dosarul tău.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION / CONTACT -->
+<section class="location" id="contact">
+  <div class="location-info reveal">
+    <span class="section-label">Unde ne găsești</span>
+    <h2 class="section-title">Suntem în Căușeni</h2>
+    <p class="section-sub">Vino la noi sau sună acum — răspundem rapid la orice întrebare.</p>
+    <ul class="contact-list">
+      <li>
+        <span class="ci">📍</span>
+        <div>
+          <strong>Adresă</strong>
+          <span>Str. Independenței 14, Căușeni, MD-4301</span>
+        </div>
+      </li>
+      <li>
+        <span class="ci">📞</span>
+        <div>
+          <strong>Telefon</strong>
+          <span>+373 69 000 000</span>
+        </div>
+      </li>
+      <li>
+        <span class="ci">⏰</span>
+        <div>
+          <strong>Program de lucru</strong>
+          <span>Luni – Sâmbătă: 8:00 – 18:00</span>
+        </div>
+      </li>
+      <li>
+        <span class="ci">✉️</span>
+        <div>
+          <strong>Email</strong>
+          <span>contact@agrotrade-causeni.md</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="map-placeholder reveal">
+    <span class="map-pin">📍</span>
+    <span class="map-label">Căușeni, Moldova</span>
+    <span class="map-sub">Raionul Căușeni · Republica Moldova</span>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="reveal">
+    <span class="section-label">Hai să colaborăm</span>
+    <h2 class="section-title">Gata să începem?</h2>
+    <p class="section-sub">Contactați-ne astăzi și primiți o ofertă personalizată. Fără obligații, fără birocrație.</p>
+    <div class="cta-actions">
+      <a href="tel:+37369000000" class="btn-primary">📞 Sunați acum</a>
+      <a href="https://wa.me/37369000000" class="btn-outline">💬 WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">AgroTrade Căușeni</div>
+  <p>© 2026 AgroTrade Căușeni. Toate drepturile rezervate.</p>
+  <ul class="footer-links">
+    <li><a href="#despre">Despre</a></li>
+    <li><a href="#produse">Produse</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Duplicate marquee for seamless loop
+  const track = document.getElementById('marquee');
+  track.innerHTML += track.innerHTML;
+</script>
+</body>
+</html>

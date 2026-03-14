@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produse — AgroTrade Căușeni</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Fira+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C; --gold-light: #E8C96A;
+    --deep: #0D1B0F; --forest: #1A3A1E; --leaf: #2E6B35;
+    --cream: #F5F0E8; --warm: #EDE5D0;
+    --text: #1C1C1C; --muted: #6B6B6B;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Fira Sans', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 5vw; background: rgba(13,27,15,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,168,76,0.25); }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; color: var(--gold); letter-spacing: 0.04em; text-decoration: none; }
+  .nav-logo span { color: #fff; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.25s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+  .nav-cta { background: var(--gold); color: var(--deep) !important; padding: 0.5rem 1.4rem; border-radius: 2px; font-weight: 600 !important; }
+  .nav-cta:hover { background: var(--gold-light) !important; }
+  @media(max-width:768px){ .nav-links { display: none; } }
+
+  /* PAGE HERO */
+  .page-hero { min-height: 50vh; background: var(--deep); display: flex; align-items: flex-end; padding: 80px 5vw 5rem; position: relative; overflow: hidden; }
+  .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 70% at 75% 40%, rgba(46,107,53,0.3) 0%, transparent 65%), radial-gradient(ellipse 50% 40% at 15% 80%, rgba(201,168,76,0.1) 0%, transparent 60%); }
+  .page-hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(201,168,76,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.05) 1px, transparent 1px); background-size: 60px 60px; }
+  .page-hero-content { position: relative; z-index: 2; max-width: 700px; }
+  .breadcrumb { display: flex; gap: 0.5rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+  .breadcrumb a { color: var(--gold); text-decoration: none; }
+  .breadcrumb span { color: rgba(255,255,255,0.25); }
+  .page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem,6vw,5rem); font-weight: 900; color: #fff; line-height: 1.05; margin-bottom: 1.2rem; animation: fadeUp 0.9s ease both; }
+  .page-hero h1 em { font-style: normal; color: var(--gold); }
+  .page-hero p { font-size: 1.1rem; color: rgba(255,255,255,0.6); line-height: 1.75; font-weight: 300; max-width: 560px; animation: fadeUp 0.9s 0.15s ease both; }
+
+  /* FILTER BAR */
+  .filter-bar { background: var(--warm); padding: 2rem 5vw; display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; border-bottom: 1px solid rgba(13,27,15,0.08); position: sticky; top: 68px; z-index: 50; }
+  .filter-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-right: 0.5rem; }
+  .filter-btn { background: transparent; border: 1px solid rgba(13,27,15,0.2); color: var(--text); font-family: 'Fira Sans', sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.45rem 1.1rem; border-radius: 2px; cursor: pointer; transition: all 0.2s; }
+  .filter-btn:hover { border-color: var(--leaf); color: var(--leaf); }
+  .filter-btn.active { background: var(--deep); border-color: var(--deep); color: var(--gold); }
+
+  /* CATEGORY SECTION */
+  .cat-section { padding: 5rem 5vw; }
+  .cat-section:nth-child(even) { background: var(--warm); }
+  .cat-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap; }
+  .cat-title-group {}
+  .section-label { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--leaf); margin-bottom: 0.6rem; }
+  .cat-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--deep); }
+  .cat-desc { font-size: 0.9rem; color: var(--muted); font-weight: 300; max-width: 480px; line-height: 1.65; }
+  .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1.5rem; }
+  .product-card { background: #fff; border: 1px solid rgba(13,27,15,0.07); border-radius: 3px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; }
+  .product-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(13,27,15,0.1); }
+  .product-visual { height: 130px; display: flex; align-items: center; justify-content: center; font-size: 4rem; position: relative; overflow: hidden; }
+  .product-visual.v-agro { background: linear-gradient(135deg, #1a3a1e 0%, #2e6b35 100%); }
+  .product-visual.v-food { background: linear-gradient(135deg, #3a2a0d 0%, #7a5c1e 100%); }
+  .product-visual.v-build { background: linear-gradient(135deg, #1a1a2e 0%, #2e2e5e 100%); }
+  .product-visual.v-service { background: linear-gradient(135deg, #0d2a1e 0%, #1e5a3a 100%); }
+  .product-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+  .product-body h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--deep); margin-bottom: 0.5rem; }
+  .product-body p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; font-weight: 300; flex: 1; }
+  .product-footer { margin-top: 1.2rem; display: flex; justify-content: space-between; align-items: center; }
+  .product-badge { display: inline-block; background: rgba(46,107,53,0.09); color: var(--leaf); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.28rem 0.7rem; border-radius: 2px; }
+  .product-badge.gold { background: rgba(201,168,76,0.12); color: #a07c20; }
+  .product-link { font-size: 0.78rem; font-weight: 600; color: var(--leaf); text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s; }
+  .product-link:hover { color: var(--deep); }
+
+  /* PRICING NOTE */
+  .pricing-note { background: var(--deep); padding: 4rem 5vw; }
+  .pricing-inner { max-width: 850px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .pricing-text .section-label { color: var(--gold); }
+  .pricing-text h2 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: #fff; margin-bottom: 1rem; }
+  .pricing-text p { font-size: 0.95rem; color: rgba(255,255,255,0.55); line-height: 1.8; font-weight: 300; }
+  .pricing-tiers { display: flex; flex-direction: column; gap: 1rem; }
+  .tier { background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.15); border-radius: 3px; padding: 1.2rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .tier-name { font-size: 0.85rem; font-weight: 600; color: #fff; letter-spacing: 0.05em; }
+  .tier-desc { font-size: 0.78rem; color: rgba(255,255,255,0.35); font-weight: 300; margin-top: 0.15rem; }
+  .tier-badge { background: var(--gold); color: var(--deep); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.3rem 0.75rem; border-radius: 2px; white-space: nowrap; }
+  @media(max-width:700px){ .pricing-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+  /* CTA STRIP */
+  .cta-strip { background: var(--gold); padding: 3.5rem 5vw; display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap; }
+  .cta-strip h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; color: var(--deep); }
+  .cta-strip p { font-size: 0.95rem; color: rgba(13,27,15,0.65); font-weight: 300; margin-top: 0.3rem; }
+  .btn-dark { background: var(--deep); color: var(--gold); padding: 0.9rem 2.2rem; border-radius: 2px; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; display: inline-block; transition: background 0.25s; }
+  .btn-dark:hover { background: var(--forest); }
+
+  /* FOOTER */
+  footer { background: var(--deep); color: rgba(255,255,255,0.35); padding: 2.5rem 5vw; display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap; border-top: 1px solid rgba(201,168,76,0.1); }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 900; color: var(--gold); text-decoration: none; }
+  footer p { font-size: 0.78rem; font-weight: 300; }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { color: rgba(255,255,255,0.3); text-decoration: none; font-size: 0.78rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  @keyframes fadeUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:none; } }
+  .reveal { opacity:0; transform:translateY(24px); transition: opacity 0.65s, transform 0.65s; }
+  .reveal.visible { opacity:1; transform:none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Agro<span>Trade</span></a>
+  <ul class="nav-links">
+    <li><a href="despre.html">Despre</a></li>
+    <li><a href="produse.html" class="active">Produse</a></li>
+    <li><a href="avantaje.html">Avantaje</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="tel:+37369000000" class="nav-cta">Sunați-ne</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="breadcrumb"><a href="index.html">Acasă</a><span>/</span><span>Produse</span></div>
+    <h1>Tot ce ai<br><em>nevoie, local</em></h1>
+    <p>O gamă completă de produse și servicii, disponibile rapid, la prețuri corecte, chiar în Căușeni și împrejurimi.</p>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <span class="filter-label">Filtrează:</span>
+  <button class="filter-btn active" onclick="filterAll(this)">Toate</button>
+  <button class="filter-btn" onclick="filterCat(this,'agro')">Agricole</button>
+  <button class="filter-btn" onclick="filterCat(this,'food')">Alimentare</button>
+  <button class="filter-btn" onclick="filterCat(this,'build')">Construcții</button>
+  <button class="filter-btn" onclick="filterCat(this,'service')">Servicii</button>
+</div>
+
+<!-- AGRO -->
+<section class="cat-section" id="agro" data-cat="agro">
+  <div class="cat-header reveal">
+    <div class="cat-title-group">
+      <span class="section-label">Categoria 01</span>
+      <h2 class="cat-title">🌾 Produse Agricole</h2>
+    </div>
+    <p class="cat-desc">Inputuri de calitate pentru fermele și gospodăriile din raionul Căușeni, disponibile sezonier și la comandă.</p>
+  </div>
+  <div class="products-grid">
+    <div class="product-card reveal">
+      <div class="product-visual v-agro">🌾</div>
+      <div class="product-body">
+        <h3>Cereale & Grâu</h3>
+        <p>Grâu, porumb, orz și alte cereale de calitate superioară pentru consum sau procesare. Cantități mari disponibile.</p>
+        <div class="product-footer"><span class="product-badge">Stoc sezonier</span><a href="contact.html" class="product-link">Comandă →</a></div>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-visual v-agro">🌱</div>
+      <div class="product-body">
+        <h3>Semințe Certificat</h3>
+        <p>Semințe certificate pentru culturi de câmp: floarea-soarelui, rapiță, porumb și legume. Soiuri adaptate climei locale.</p>
+        <div class="product-footer"><span class="product-badge">Primăvară / Toamnă</span><a href="contact.html" class="product-link">Comandă →</a></div>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-visual v-agro">🧪</div>
+      <div class="product-body">
+        <h3>Îngrășăminte & Fertilizanți</h3>
+        <p>Gamă completă de îngrășăminte minerale și organice. Consultanță inclusă pentru dozaj și aplicare optimă.</p>
+        <div class="product-footer"><span class="product-badge">Tot anul</span><a href="contact.html" class="product-link">Comandă →</a></div>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-visual v-agro">🐄</div>
+      <div class="product-body">
+        <h3>Furaje & Concentrate</h3>
+        <p>Furaje combinate, concentrate proteice și suplimente pentru bovine, porcine și păsări. Livrare la fermă.</p>
+        <div class="product-footer"><span class="product-badge">Stoc permanent</span><a href="contact.html" class="product-link">Comandă →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOD -->
+<section class="cat-section" id="food" data-cat="food">
+  <div class="cat-header reveal">
+    <div class="cat-title-group">
+      <span class="section-label">Categoria 02</span>
+      <h2 class="cat-title">🛒 Produse Alimentare</h2>
+    </div>
+    <p class="cat-desc">Sortiment larg de produse alimentare pentru magazine locale, restaurante, cantine și gospodării.</p>
+  </div>
+  <div class="products-grid">
+    <div class="product-card reveal">
+      <div class="product-visual v-food">🛢️</div>
+      <div class="product-body">
+        <h3>Ulei Vegetal en-Gros</h3>
+        <p>Ulei de floarea-soarelui rafinat în bidoane de 5L, 10L și cisterne. Prețuri competitive pentru comercianți.</p>
+        <div class="product-footer"><span class="product-badge gold">En-gros</span><a href="contact.html" class="product-link">Comandă →</a></div>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-visual v-food">🍬</div>
+      <div class="product-body">
+        <h3>Produse de Panificație</h3>
+        <p>Făină, zahăr, sare, drojdie și alte ingrediente de bază. Ambalaje mici și mari pentru magazine și cofetării.</p>
+        <div class="product-footer"><span class="product-badge">Stoc zilnic</span><a href="contact.html" class="product-link">Comandă →</a></div>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-visual v-food">🥫</div>
+      <div class="product-body">
+        <h3>Conserve & Produse Uscate</h3>
+        <p>Conserve de legume și fructe, paste, orez, hrișcă și alte produse cu termen lung de valabilitate.</p>
+        <div class="product-footer"><span class="product-badge">Stoc permanent</span><a href="contact.html" class="product-link">Comandă →</a></div>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-visual v-food">🧴</div>
+      <div class="product-body">
+        <h3>Produse de Curățenie</h3>
+        <p>Detergenți, dezinfectanți și produse de igienă pentru uz casnic și profesional. Pachete pentru magazine.</p>
+        <div class="product-footer"><span class="product-badge">Stoc permanent</span><a href="contact.html" class="product-link">Comandă →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILD -->
+<section class="cat-section" id="build" data-cat="build">
+  <div class="cat-header reveal">
+    <div class="cat-title-group">
+      <span class="section-label">Categoria 03</span>
+      <h2 class="cat-title">🔧 Materiale de Construcție</h2>
+    </div>
+    <p class="cat-desc">Tot ce ai nevoie pentru construcție, renovare sau reparații — livrat direct la șantierul tău.</p>
+  </div>
+  <div class="products-grid">
+    <div class="product-card reveal">
+      <div class="product-visual v-build">🧱</div>
+      <div class="product-body">
+        <h3>Materiale de Zidărie</h3>
+        <p>Cărămidă, blocuri de beton, mortar și materiale auxiliare pentru fundații și pereți.</p>
+        <div class="product-footer"><span class="product-badge">La comandă</span><a href="contact.html" class="product-link">Comandă →</a></div>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-visual v-build">🪵</div>
+      <div class="product-body">
+        <h3>Lemn & Materiale Lemnoase</h3>
+        <p>Cherestea, rigle, OSB, placaj și alte produse din lemn pentru construcții și finisaje.</p>
+        <div class="product-footer"><span class="product-badge">La comandă</span><a href="contact.html" class="product-link">Comandă →</a></div>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-visual v-build">🪟</div>
+      <div class="product-body">
+        <h3>Materiale de Finisaj</h3>
+        <p>Vopsele, grunduri, tencuieli, gresie și faianță. Selecție pentru interioare și exterioare.</p>
+        <div class="product-footer"><span class="product-badge">Stoc selectiv</span><a href="contact.html" class="product-link">Comandă →</a></div>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-visual v-build">⚡</div>
+      <div class="product-body">
+        <h3>Echipamente & Unelte</h3>
+        <p>Unelte manuale și electrice, echipament de protecție și consumabile pentru șantier.</p>
+        <div class="product-footer"><span class="product-badge gold">Disponibil</span><a href="contact.html" class="product-link">Comandă →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="cat-section" id="service" data-cat="service">
+  <div class="cat-header reveal">
+    <div class="cat-title-group">
+      <span class="section-label">Categoria 04</span>
+      <h2 class="cat-title">💼 Servicii Comerciale</h2>
+    </div>
+    <p class="cat-desc">Pe lângă produse, oferim servicii care fac colaborarea mai ușoară și mai eficientă pentru tine.</p>
+  </div>
+  <div class="products-grid">
+    <div class="product-card reveal">
+      <div class="product-visual v-service">🚚</div>
+      <div class="product-body">
+        <h3>Livrare Locală</h3>
+        <p>Transport rapid în Căușeni și localitățile din raion. Livrare gratuită la comenzile care depășesc un anumit volum.</p>
+        <div class="product-footer"><span class="product-badge">Gratuit la volum</span><a href="contact.html" class="product-link">Detalii →</a></div>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-visual v-service">📦</div>
+      <div class="product-body">
+        <h3>Comerț en-Gros</h3>
+        <p>Prețuri speciale și contracte flexibile pentru magazine, firme și cumpărători de volum. Facturi și chitanțe.</p>
+        <div class="product-footer"><span class="product-badge gold">Parteneriat</span><a href="contact.html" class="product-link">Detalii →</a></div>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-visual v-service">💬</div>
+      <div class="product-body">
+        <h3>Consultanță Gratuită</h3>
+        <p>Te ajutăm să identifici cele mai bune produse și surse pentru nevoile tale specifice, fără niciun cost.</p>
+        <div class="product-footer"><span class="product-badge">100% gratuit</span><a href="contact.html" class="product-link">Contactează →</a></div>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-visual v-service">📋</div>
+      <div class="product-body">
+        <h3>Contracte Personalizate</h3>
+        <p>Oferte personalizate cu termene de plată avantajoase pentru clienții fideli și partenerii pe termen lung.</p>
+        <div class="product-footer"><span class="product-badge gold">Clienți fideli</span><a href="contact.html" class="product-link">Detalii →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING NOTE -->
+<div class="pricing-note">
+  <div class="pricing-inner">
+    <div class="pricing-text reveal">
+      <span class="section-label">Prețuri & Condiții</span>
+      <h2>Transparent de la primul contact</h2>
+      <p>Nu avem prețuri ascunse. Prețul final include tot — produs, ambalaj și, unde se aplică, livrarea. Ofertele en-gros se negociază direct cu echipa noastră.</p>
+    </div>
+    <div class="pricing-tiers reveal">
+      <div class="tier">
+        <div><div class="tier-name">Retail</div><div class="tier-desc">Achiziții individuale</div></div>
+        <span class="tier-badge">Preț standard</span>
+      </div>
+      <div class="tier">
+        <div><div class="tier-name">Semi-Gros</div><div class="tier-desc">Comenzi repetate</div></div>
+        <span class="tier-badge">-5% până la -10%</span>
+      </div>
+      <div class="tier">
+        <div><div class="tier-name">En-Gros</div><div class="tier-desc">Parteneri comerciali</div></div>
+        <span class="tier-badge">Ofertă dedicată</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-strip reveal">
+  <div>
+    <h3>Nu găsești ce cauți?</h3>
+    <p>Contactează-ne — găsim soluția împreună.</p>
+  </div>
+  <a href="contact.html" class="btn-dark">Vorbim acum →</a>
+</div>
+
+<footer>
+  <a href="index.html" class="footer-logo">AgroTrade Căușeni</a>
+  <p>© 2026 AgroTrade Căușeni. Toate drepturile rezervate.</p>
+  <ul class="footer-links">
+    <li><a href="despre.html">Despre</a></li>
+    <li><a href="produse.html">Produse</a></li>
+    <li><a href="avantaje.html">Avantaje</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } }), { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  function filterAll(btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.cat-section').forEach(s => s.style.display = '');
+  }
+  function filterCat(btn, cat) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.cat-section').forEach(s => {
+      s.style.display = s.dataset.cat === cat ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
